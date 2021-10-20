@@ -3,21 +3,21 @@ import {Entity, model, property} from '@loopback/repository';
 @model()
 export class UsuarioRoles extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
     generated: true,
   })
-  id?: number;
+  _id?: string;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  id_usuario?: number;
+  id_usuario?: string;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  id_rol?: number;
+  id_rol?: string;
 
   constructor(data?: Partial<UsuarioRoles>) {
     super(data);

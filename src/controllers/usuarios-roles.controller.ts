@@ -20,7 +20,7 @@ import {
 import {UsuarioRoles} from '../models';
 import {UsuarioRolesRepository} from '../repositories';
 
-export class UsuarioRolesController {
+export class UsuariosRolesController {
   constructor(
     @repository(UsuarioRolesRepository)
     public usuarioRolesRepository : UsuarioRolesRepository,
@@ -37,12 +37,12 @@ export class UsuarioRolesController {
         'application/json': {
           schema: getModelSchemaRef(UsuarioRoles, {
             title: 'NewUsuarioRoles',
-            exclude: ['id'],
+            exclude: ['_id'],
           }),
         },
       },
     })
-    usuarioRoles: Omit<UsuarioRoles, 'id'>,
+    usuarioRoles: Omit<UsuarioRoles, '_id'>,
   ): Promise<UsuarioRoles> {
     return this.usuarioRolesRepository.create(usuarioRoles);
   }
@@ -105,7 +105,7 @@ export class UsuarioRolesController {
     },
   })
   async findById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @param.filter(UsuarioRoles, {exclude: 'where'}) filter?: FilterExcludingWhere<UsuarioRoles>
   ): Promise<UsuarioRoles> {
     return this.usuarioRolesRepository.findById(id, filter);
@@ -116,7 +116,7 @@ export class UsuarioRolesController {
     description: 'UsuarioRoles PATCH success',
   })
   async updateById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -134,7 +134,7 @@ export class UsuarioRolesController {
     description: 'UsuarioRoles PUT success',
   })
   async replaceById(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody() usuarioRoles: UsuarioRoles,
   ): Promise<void> {
     await this.usuarioRolesRepository.replaceById(id, usuarioRoles);
@@ -144,7 +144,7 @@ export class UsuarioRolesController {
   @response(204, {
     description: 'UsuarioRoles DELETE success',
   })
-  async deleteById(@param.path.number('id') id: number): Promise<void> {
+  async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.usuarioRolesRepository.deleteById(id);
   }
 }

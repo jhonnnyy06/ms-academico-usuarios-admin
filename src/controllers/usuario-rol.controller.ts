@@ -40,7 +40,7 @@ export class UsuarioRolController {
     },
   })
   async find(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Rol>,
   ): Promise<Rol[]> {
     return this.usuarioRepository.rols(id).find(filter);
@@ -55,17 +55,17 @@ export class UsuarioRolController {
     },
   })
   async create(
-    @param.path.number('id') id: typeof Usuario.prototype.id,
+    @param.path.string('id') id: typeof Usuario.prototype._id,
     @requestBody({
       content: {
         'application/json': {
           schema: getModelSchemaRef(Rol, {
             title: 'NewRolInUsuario',
-            exclude: ['id'],
+            exclude: ['_id'],
           }),
         },
       },
-    }) rol: Omit<Rol, 'id'>,
+    }) rol: Omit<Rol, '_id'>,
   ): Promise<Rol> {
     return this.usuarioRepository.rols(id).create(rol);
   }
@@ -79,7 +79,7 @@ export class UsuarioRolController {
     },
   })
   async patch(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @requestBody({
       content: {
         'application/json': {
@@ -102,7 +102,7 @@ export class UsuarioRolController {
     },
   })
   async delete(
-    @param.path.number('id') id: number,
+    @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Rol)) where?: Where<Rol>,
   ): Promise<Count> {
     return this.usuarioRepository.rols(id).delete(where);

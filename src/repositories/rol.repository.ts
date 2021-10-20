@@ -5,7 +5,7 @@ import {Rol, RolRelations} from '../models';
 
 export class RolRepository extends DefaultCrudRepository<
   Rol,
-  typeof Rol.prototype.id,
+  typeof Rol.prototype._id,
   RolRelations
 > {
   constructor(

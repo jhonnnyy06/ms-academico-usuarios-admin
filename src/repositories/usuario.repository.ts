@@ -7,13 +7,13 @@ import {RolRepository} from './rol.repository';
 
 export class UsuarioRepository extends DefaultCrudRepository<
   Usuario,
-  typeof Usuario.prototype.id,
+  typeof Usuario.prototype._id,
   UsuarioRelations
 > {
 
-  public readonly rols: HasManyThroughRepositoryFactory<Rol, typeof Rol.prototype.id,
+  public readonly rols: HasManyThroughRepositoryFactory<Rol, typeof Rol.prototype._id,
           UsuarioRoles,
-          typeof Usuario.prototype.id
+          typeof Usuario.prototype._id
         >;
 
   constructor(
