@@ -7,8 +7,8 @@ const config = {
   url: 'mongodb+srv://usuario_academico:FtIOGTmOT0fBOy5Q@cluster0.rgonx.mongodb.net/usuariosAcademico?retryWrites=true&w=majority',
   host: 'localhost',
   port: 27017,
-  user: 'usuario_academico',
-  password: 'FtIOGTmOT0fBOy5Q',
+  user: '',
+  password: '',
   database: 'usuariosAcademico',
   useNewUrlParser: true
 };
